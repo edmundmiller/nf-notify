@@ -37,6 +37,39 @@ class HelloObserver implements TraceObserver {
 
     @Override
     void onFlowComplete() {
-        log.info "Pipeline complete! 👋"
+        def currentTime = new Date()
+        def formattedTime = currentTime.format("yyyy-MM-dd HH:mm:ss")
+
+        sendTerminalNotification(
+            "osc9", 
+            "Nextflow Workflow Complete",
+            formattedTime,
+        )
     }
+
+    private void sendTerminalNotification(String protocol, String title, String message) {
+        def ESC = "\u001b"
+        def BEL = "\u0007"
+        def escapeSequence
+
+        switch (protocol.toLowerCase()) {
+            case "iterm2":
+                escapeSequence = "${ESC}]1337;Notify=title=${title};body=${message}${BEL}"
+                break
+            case "osc9":
+                escapeSequence = "${ESC}]9;${title} ${message}${BEL}"
+                break
+            case "osc777":
+                escapeSequence = "${ESC}]777;notify;${title};${message}${BEL}"
+                break
+            default:
+                println "Unsupported protocol. Using basic print."
+                println "${title}: ${message}"
+                return
+        }
+
+        System.out.print(escapeSequence)
+        System.out.flush()
+    }
+
 }
