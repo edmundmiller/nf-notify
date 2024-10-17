@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package nextflow.hello
+package nextflow.notify
 
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
@@ -28,7 +28,7 @@ import nextflow.trace.TraceObserver
  */
 @Slf4j
 @CompileStatic
-class HelloObserver implements TraceObserver {
+class TerminalNotification implements TraceObserver {
 
     @Override
     void onFlowCreate(Session session) {

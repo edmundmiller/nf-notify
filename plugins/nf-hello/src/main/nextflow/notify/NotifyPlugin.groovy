@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-package nextflow.hello
+package nextflow.notify
 
 import groovy.transform.CompileStatic
-import nextflow.Session
-import nextflow.trace.TraceObserver
-import nextflow.trace.TraceObserverFactory
+import nextflow.plugin.BasePlugin
+import nextflow.plugin.Scoped
+import org.pf4j.PluginWrapper
+
 /**
- * Implements the validation observer factory
+ * Implements the Notify plugins entry point
  *
  * @author Paolo Di Tommaso <paolo.ditommaso@gmail.com>
  */
 @CompileStatic
-class HelloFactory implements TraceObserverFactory {
+class NotifyPlugin extends BasePlugin {
 
-    @Override
-    Collection<TraceObserver> create(Session session) {
-        final result = new ArrayList()
-        result.add( new HelloObserver() )
-        return result
+    NotifyPlugin(PluginWrapper wrapper) {
+        super(wrapper)
     }
 }
