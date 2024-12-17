@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/Midnighter/cookiecutter-nf-plugin",
+  "commit": "2368a97160bda770f5e0057b76526fbc9bda7985",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Edmund Miller",
+      "email": "edmund.miller@seqera.io",
+      "github_username": "edmundmiller",
+      "plugin_name": "NF Notify",
+      "plugin_slug": "nf-notify",
+      "plugin_package": "nf_notify",
+      "plugin_class_prefix": "NFNotify",
+      "plugin_short_description": "Native Terminal Notifications for Nextflow",
+      "license": "MIT",
+      "release_date": "2024-12-17",
+      "year": "2024",
+      "version": "0.1.0a1",
+      "_extensions": [
+        "jinja2_time.TimeExtension",
+        "jinja2_strcase.StrcaseExtension"
+      ],
+      "_template": "https://github.com/Midnighter/cookiecutter-nf-plugin"
+    }
+  },
+  "directory": null
+}
