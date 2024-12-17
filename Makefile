@@ -2,6 +2,7 @@
 # COMMANDS                                                                     #
 ################################################################################
 
+version ?= $(shell grep 'Plugin-Version' plugins/nf-notify/src/resources/META-INF/MANIFEST.MF | awk '{ print $$2 }')
 config ?= compileClasspath
 
 ifdef module
@@ -17,9 +18,13 @@ compile:
 	./gradlew compileGroovy
 	@echo "DONE `date`"
 
-
 check:
 	./gradlew check
+
+install:
+	./gradlew copyPluginZip
+	rm -rf ${HOME}/.nextflow/plugins/nf-notify-${version}
+	cp -r build/plugins/nf-notify-${version} ${HOME}/.nextflow/plugins/
 
 ## Show dependencies, try `make deps config=runtime`, `make deps config=google`
 deps:

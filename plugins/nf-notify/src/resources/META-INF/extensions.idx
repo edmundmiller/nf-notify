@@ -1,1 +1,2 @@
 nextflow.nf_notify.NFNotifyExtension
+nextflow.nf_notify.NFNotifyObserver
