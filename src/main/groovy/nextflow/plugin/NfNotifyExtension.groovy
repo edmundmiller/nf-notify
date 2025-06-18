@@ -1,5 +1,5 @@
 /*
- * Copyright 2021, Seqera Labs
+ * Copyright 2025, Seqera Labs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,32 @@
  * limitations under the License.
  */
 
-package nextflow.notify
+package nextflow.plugin
 
 import groovy.transform.CompileStatic
-import nextflow.plugin.BasePlugin
-import nextflow.plugin.Scoped
-import org.pf4j.PluginWrapper
+import nextflow.Session
+import nextflow.plugin.extension.Function
+import nextflow.plugin.extension.PluginExtensionPoint
 
 /**
- * Implements the Notify plugins entry point
- *
- * @author Paolo Di Tommaso <paolo.ditommaso@gmail.com>
+ * Implements a custom function which can be imported by
+ * Nextflow scripts.
  */
 @CompileStatic
-class NotifyPlugin extends BasePlugin {
+class NfNotifyExtension extends PluginExtensionPoint {
 
-    NotifyPlugin(PluginWrapper wrapper) {
-        super(wrapper)
+    @Override
+    protected void init(Session session) {
     }
+
+    /**
+     * Say hello to the given target.
+     *
+     * @param target
+     */
+    @Function
+    void sayHello(String target) {
+        println "Hello, ${target}!"
+    }
+
 }
