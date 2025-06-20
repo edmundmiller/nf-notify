@@ -27,6 +27,17 @@ Alternatively, add the same block to your pipeline's `nextflow.config`.
 
 When your workflow completes, a native terminal notification will be sent (using OSC 9, iTerm2, or compatible protocols). This works in most modern terminals, including iTerm2 and recent versions of GNOME Terminal.
 
+#### What Terminals are Supported?
+
+- Ghostty[^1]
+- iTerm2[^2]
+- GNOME Terminal[^3]
+- Konsole[^4]
+- Terminal.app[^5]
+- Kitty[^6]
+- WezTerm[^7]
+- Foot (OSC 777 only)[^8]
+
 #### nf-test
 
 No special configuration is needed! If you run your pipeline with [nf-test](https://github.com/nextflow-io/nf-test), you will also receive notifications on test completion. These can stack up quickly though.
@@ -38,6 +49,15 @@ See `examples/nextflow.config` and `examples/test-pipeline.nf` for a minimal set
 ### More Information
 
 - Community post: [Native terminal notifications on pipeline completion](https://community.seqera.io/t/native-terminal-notifications-on-pipeline-completion/1289)
+
+[^1]: [Ghostty changelog](https://github.com/mitchellh/ghostty/releases)
+[^2]: [iTerm2 escape codes documentation](https://iterm2.com/documentation-escape-codes.html)
+[^3]: [GNOME Terminal 3.44 release notes](https://gitlab.gnome.org/GNOME/gnome-terminal/-/merge_requests/233)
+[^4]: [Konsole merge request](https://invent.kde.org/utilities/konsole/-/merge_requests/670)
+[^5]: [Terminal.app Ventura release notes](https://support.apple.com/en-us/HT213264)
+[^6]: [Kitty protocol extensions](https://sw.kovidgoyal.net/kitty/protocol-extensions.html)
+[^7]: [WezTerm changelog](https://wezfurlong.org/wezterm/changelog.html#20230712-072601-f4abf8fd)
+[^8]: [Foot OSC 777 implementation](https://codeberg.org/dnkl/foot/issues/224)
 
 ## Building
 
