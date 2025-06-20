@@ -1,0 +1,72 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Trace observers
+
+Changed in version 25.04: The TraceObserver interface is now deprecated. Use TraceObserverV2 and TraceObserverFactoryV2 instead.
+
+A trace observer in Nextflow is an entity that can listen and react to workflow events, such as when a workflow starts, a task completes, a file is published, etc. Several components in Nextflow, such as the execution report and DAG visualization, are implemented as trace observers.
+
+Plugins can define custom trace observers that react to workflow events with custom behavior. To implement a trace observer, create a class that implements the TraceObserver trait and another class that implements the TraceObserverFactory interface. Implement any of the hooks defined in TraceObserver, and implement the create() method in your observer factory:
+
+// MyObserverFactory.groovy
+import nextflow.Session
+import nextflow.trace.TraceObserver
+import nextflow.trace.TraceObserverFactory
+
+class MyObserverFactory implements TraceObserverFactory {
+
+    @Override
+    Collection<TraceObserver> create(Session session) {
+        final enabled = session.config.navigate('myplugin.enabled')
+        return enabled ? [ new MyObserver() ] : []
+    }
+}
+
+// MyObserver.groovy
+import java.nio.file.Path
+
+import nextflow.processor.TaskHandler
+import nextflow.trace.TraceObserver
+import nextflow.trace.TraceRecord
+
+class MyObserver implements TraceObserver {
+    
+    @Override
+    void onFlowBegin() {
+        println "Okay, let's begin!"
+    }
+
+    @Override
+    void onProcessComplete(TaskHandler handler, TraceRecord trace) {
+        println "I completed a task! It's name is '${handler.task.name}'"
+    }
+
+    @Override
+    void onProcessCached(TaskHandler handler, TraceRecord trace) {
+        println "I found a task in the cache! It's name is '${handler.task.name}'"
+    }
+
+    @Override
+    void onFilePublish(Path destination, Path source) {
+        println "I published a file! It's located at ${path.toUriString()}"
+    }
+    
+    @Override
+    void onFlowError(TaskHandler handler, TraceRecord trace) {
+        println "Uh oh, something went wrong..."
+    }
+
+    @Override
+    void onFlowComplete() {
+        println 'All done!'
+    }
+}
+
+You can then use your trace observer by simply enabling the plugin in your pipeline. In the above example, the observer must also be enabled with a config option:
+
+myplugin.enabled = true
+
+Refer to the TraceObserver source code for descriptions of the available workflow events.
