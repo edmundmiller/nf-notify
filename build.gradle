@@ -1,11 +1,11 @@
 plugins {
-    id 'io.nextflow.nextflow-plugin' version '0.0.1-alpha4'
+    id 'io.nextflow.nextflow-plugin' version '0.0.1-alpha6'
 }
 
 version = '0.1.0'
 
 nextflowPlugin {
-    nextflowVersion = '24.10.0'
+    nextflowVersion = '25.04.0'
 
     provider = 'nextflow'
     className = 'nextflow.plugin.NfNotifyPlugin'

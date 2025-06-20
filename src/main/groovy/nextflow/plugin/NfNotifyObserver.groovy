@@ -19,7 +19,7 @@ package nextflow.plugin
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import nextflow.Session
-import nextflow.trace.TraceObserver
+import nextflow.trace.TraceObserverV2
 
 /**
  * Implements an observer that allows implementing custom
@@ -27,7 +27,7 @@ import nextflow.trace.TraceObserver
  */
 @Slf4j
 @CompileStatic
-class NfNotifyObserver implements TraceObserver {
+class NfNotifyObserver implements TraceObserverV2 {
 
     @Override
     void onFlowComplete() {

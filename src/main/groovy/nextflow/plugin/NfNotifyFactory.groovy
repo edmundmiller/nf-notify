@@ -18,19 +18,19 @@ package nextflow.plugin
 
 import groovy.transform.CompileStatic
 import nextflow.Session
-import nextflow.trace.TraceObserver
-import nextflow.trace.TraceObserverFactory
+import nextflow.trace.TraceObserverV2
+import nextflow.trace.TraceObserverFactoryV2
 
 /**
  * Implements a factory object required to create
  * the {@link NfNotifyObserver} instance.
  */
 @CompileStatic
-class NfNotifyFactory implements TraceObserverFactory {
+class NfNotifyFactory implements TraceObserverFactoryV2 {
 
     @Override
-    Collection<TraceObserver> create(Session session) {
-        return List.<TraceObserver>of(new NfNotifyObserver())
+    Collection<TraceObserverV2> create(Session session) {
+        return List.<TraceObserverV2>of(new NfNotifyObserver())
     }
 
 }
